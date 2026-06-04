@@ -1,58 +1,152 @@
-# Smart Calculator Pro
+import math
 
-def add(a,b):
-    return a+b
+history = []
 
-def subtract(a,b):
-    return a-b
 
-def multiply(a,b):
-    return a*b
+def add(a, b):
+    return a + b
 
-def division(a,b):
-    if b!=0:
-        return a/b
+
+def subtract(a, b):
+    return a - b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    if b != 0:
+        return a / b
+    return "Cannot divide by zero"
+
+
+def power(a, b):
+    return a ** b
+
+
+def square_root(a):
+    return math.sqrt(a)
+
+
+while True:
+
+    print("\n===== SMART CALCULATOR PRO =====")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("5. Square")
+    print("6. Cube")
+    print("7. Power")
+    print("8. Square Root")
+    print("9. View History")
+    print("10. Save History")
+    print("11. Exit")
+
+    try:
+        choice = int(input("\nEnter your choice: "))
+
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
+
+    if choice == 1:
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+
+        result = add(a, b)
+
+        print("Result =", result)
+        history.append(f"{a} + {b} = {result}")
+
+    elif choice == 2:
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+
+        result = subtract(a, b)
+
+        print("Result =", result)
+        history.append(f"{a} - {b} = {result}")
+
+    elif choice == 3:
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+
+        result = multiply(a, b)
+
+        print("Result =", result)
+        history.append(f"{a} * {b} = {result}")
+
+    elif choice == 4:
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+
+        result = divide(a, b)
+
+        print("Result =", result)
+        history.append(f"{a} / {b} = {result}")
+
+    elif choice == 5:
+        a = float(input("Enter a number: "))
+
+        result = a ** 2
+
+        print("Square =", result)
+        history.append(f"Square of {a} = {result}")
+
+    elif choice == 6:
+        a = float(input("Enter a number: "))
+
+        result = a ** 3
+
+        print("Cube =", result)
+        history.append(f"Cube of {a} = {result}")
+
+    elif choice == 7:
+        a = float(input("Enter base number: "))
+        b = float(input("Enter power: "))
+
+        result = power(a, b)
+
+        print("Result =", result)
+        history.append(f"{a}^{b} = {result}")
+
+    elif choice == 8:
+        a = float(input("Enter a number: "))
+
+        if a < 0:
+            print("Square root of negative number is not allowed")
+        else:
+            result = square_root(a)
+
+            print("Square Root =", result)
+            history.append(f"√{a} = {result}")
+
+    elif choice == 9:
+
+        print("\n===== CALCULATION HISTORY =====")
+
+        if len(history) == 0:
+            print("No calculations performed yet.")
+
+        else:
+            for item in history:
+                print(item)
+
+    elif choice == 10:
+
+        with open("history.txt", "w", encoding="utf-8") as file:
+
+            for item in history:
+                file.write(item + "\n")
+
+        print("History saved to history.txt")
+
+    elif choice == 11:
+
+        print("Thank you for using Smart Calculator Pro!")
+        break
 
     else:
-        return "Cannot divide by zero"
-
-
-print("\nSmart Calculator Pro ===")
-
-
-print("1. Addition")
-print("2. Subtraction")
-print("3. Multiplication")
-print("4. Division")    
-print("5.Exit")
-
-choice = int(input("Enter your choice (1-5): ")) 
-
-
-print("you have selected option: ", choice)
-
-if choice == 1:
-    a=int(input("Enter first number: "))
-    b=int(input("Enter second number: "))
-    print("Result: ", add(a,b))
-
-elif choice == 2:
-    a=int(input("Enter first number: "))
-    b=int(input("Enter second number: "))
-    print("Result: ", subtract(a,b))
-
-elif choice == 3:
-    a=int(input("Enter first number: "))
-    b=int(input("Enter second number: "))
-    print("Result: ", multiply(a,b))
-
-elif choice == 4:
-    a=int(input("Enter first number: "))
-    b=int(input("Enter second number: "))
-    print("Result: ", division(a,b))
-
-elif choice == 5:
-    print("Thank you for using Smart Calculator Pro. Goodbye!")
-
-else:
-    print("Invalid choice. Please enter a number between 1 and 5.")
+        print("Invalid Choice. Please try again.")
